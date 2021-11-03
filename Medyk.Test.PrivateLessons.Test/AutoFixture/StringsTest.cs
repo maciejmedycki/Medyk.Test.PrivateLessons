@@ -37,7 +37,7 @@ namespace Medyk.Test.PrivateLessons.Test.AutoFixture
         }
 
         [Test]
-        public void JoinWithSpace_FixtureSimple_ReturnsProperString_WithSeedNicerValues()
+        public void JoinWithSpace_FixtureSimple_ReturnsProperString_WithSeedNicerValues_Fails()
         {
             var fixture = new Fixture();
             var s1 = fixture.Create<string>("1_");//install AutoFixture.SeedExtensions

@@ -8,6 +8,11 @@
         private int _id;
         private byte _youShallNotTouchMe = 5;
 
+        public DataDTO() : this(0, string.Empty)
+        {
+
+        }
+
         public DataDTO(int id, string name)
         {
             _id = id;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using NUnit.Framework;
 
 namespace Medyk.Test.PrivateLessons.Test.NUnit
@@ -63,7 +64,7 @@ namespace Medyk.Test.PrivateLessons.Test.NUnit
         [Test]
         public void WhatAboutExceptions_JustCatchThem_AndAssert()
         {
-            Assert.Throws<ArgumentNullException>(() => { ThrowException("it fails on a purpose"); });
+            Assert.Throws<ArgumentNullException>(() => { ThrowException(null); });
         }
 
         [Test]
@@ -76,6 +77,14 @@ namespace Medyk.Test.PrivateLessons.Test.NUnit
 
             StringAssert.AreEqualIgnoringCase("BBB", s1);
             StringAssert.AreEqualIgnoringCase("AAA", s2);
+        }
+
+        [Test]
+        public async Task Async_AlmostTheSame_AsRegularAsync()
+        {
+            var result = await AsyncMethod();
+
+            Assert.That(result, Is.EqualTo(123));
         }
         
         //more in https://www.automatetheplanet.com/nunit-cheat-sheet/
@@ -95,7 +104,16 @@ namespace Medyk.Test.PrivateLessons.Test.NUnit
 
         private void ThrowException(string message)
         {
-            throw new ArgumentNullException(message);
+            //if (message is null)
+            //    throw new ArgumentNullException(message);
+            _ =  message ?? throw new ArgumentNullException(message); 
+            //ArgumentNullException.ThrowIfNull(message);//brand new
+        }
+
+        private async Task<int> AsyncMethod()
+        {
+            await Task.Delay(1500);
+            return await Task.FromResult(123);
         }
     }
 }

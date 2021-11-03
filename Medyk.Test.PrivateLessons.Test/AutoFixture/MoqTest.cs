@@ -24,7 +24,7 @@ namespace Medyk.Test.PrivateLessons.Test.AutoFixture
         }
 
         [Test]
-        public void HeavyWorkerWithAutoFixture_WontWork_ForAnInterface()
+        public void HeavyWorkerWithAutoFixture_WontWork_ForAnInterface_Fails()
         {
             var fixture = new Fixture();
             var sut = fixture.Create<HeavyWorker>();//bang!
@@ -61,7 +61,7 @@ namespace Medyk.Test.PrivateLessons.Test.AutoFixture
         //Custom attribute that extends AutoData
         [Test]
         [AutoDataWithMoq]
-        public void HeavyWorkerWithAutoMoqAutoDataAttribute(Mock<IApiAccess> apiMock, HeavyWorker sut, int id, string name, object payload)
+        public void HeavyWorkerWithAutoMoqAutoDataAttribute_Fails(Mock<IApiAccess> apiMock, HeavyWorker sut, int id, string name, object payload)
         {
             sut.SendData(id, name, payload);
 
